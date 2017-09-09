@@ -5,18 +5,11 @@ import (
 	"log"
 )
 
-//Hex2Base64 takes a hex string input and returns a base64 string
+//Hex2Base64 - Challenge 1
 func Hex2Base64(hexString string) (output string) {
-	b := byte('0')
-	byteSplice := []byte("")
 	var base64Buffer bytes.Buffer
+	byteSplice := HexString2ByteSplice(hexString)
 	paddingCount := 0
-
-	for i := 0; i < len(hexString); i += 2 {
-		b = 16 * hexDigitValue(hexString[i])
-		b += hexDigitValue(hexString[i+1])
-		byteSplice = append(byteSplice, b)
-	}
 
 	// Pad the byteSplice to ensure divisible by 3
 	for true {
@@ -49,6 +42,18 @@ func Hex2Base64(hexString string) (output string) {
 	}
 
 	return base64Buffer.String()
+}
+
+func HexString2ByteSplice(hexString string) (byteSplice []byte) {
+	b := byte('0')
+	byteSplice = []byte("")
+
+	for i := 0; i < len(hexString); i += 2 {
+		b = 16 * hexDigitValue(hexString[i])
+		b += hexDigitValue(hexString[i+1])
+		byteSplice = append(byteSplice, b)
+	}
+	return byteSplice
 }
 
 func hexDigitValue(hexDigit byte) (output byte) {
