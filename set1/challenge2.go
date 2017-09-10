@@ -18,21 +18,23 @@ func FixedXOR(buffer1 string, buffer2 string) (output string) {
 	}
 
 	for i := 0; i < len(byteSplice1); i++ {
-		outputByteSlice = append(outputByteSlice, xor(byteSplice1[i], byteSplice2[i]))
+		outputByteSlice = append(outputByteSlice, Xor(byteSplice1[i], byteSplice2[i]))
 	}
 
 	for i := 0; i < len(outputByteSlice); i++ {
-		outputBuffer.WriteString(byte2HexPair(outputByteSlice[i]))
+		outputBuffer.WriteString(Byte2HexPair(outputByteSlice[i]))
 	}
 
 	return outputBuffer.String()
 }
 
-func xor(operand1 byte, operand2 byte) (output byte) {
+// Xor performs bitwise xor on two bytes
+func Xor(operand1 byte, operand2 byte) (output byte) {
 	return ^(operand1 & operand2) & (operand1 | operand2)
 }
 
-func byte2HexPair(input byte) (output string) {
+// Byte2HexPair returns a length 2 string of the hex value
+func Byte2HexPair(input byte) (output string) {
 	firstLetter := "0"
 	secondLetter := "0"
 	inputDiv16 := byte(input / 16)

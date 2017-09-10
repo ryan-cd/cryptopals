@@ -17,7 +17,7 @@ func TestFixedXOR(t *testing.T) {
 	for _, testCase := range cases {
 		got := FixedXOR(testCase.input1, testCase.input2)
 		if got != testCase.want {
-			t.Errorf("Hex2Base64(%q, %q) == \n%q, want \n%q", testCase.input1, testCase.input2, got, testCase.want)
+			t.Errorf("FixedXOR(%q, %q) == \n%q, want \n%q", testCase.input1, testCase.input2, got, testCase.want)
 		}
 	}
 }
